@@ -41,11 +41,11 @@ const BookingForm = () => {
   useEffect(() => {
     if(!isAuthenticated()){
       navigate("/login");
-    }else{
-       fetchServices();
+    }
+    fetchServices();
     if (isEdit) {
       fetchBooking();
-    }
+    
     }
    
   }, [id]);
