@@ -34,6 +34,8 @@ const BookingForm = () => {
   const [validationErrors, setValidationErrors] = useState({});
   const token = localStorage.getItem('token');
 
+  const server_url="https://cleaning-service-management-system-production.up.railway.app";
+
   useEffect(() => {
     fetchServices();
     if (isEdit) {
@@ -43,7 +45,7 @@ const BookingForm = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/services');
+      const response = await fetch(`${server_url}/api/services`);
       const data = await response.json();
       setServices(data);
     } catch (err) {
@@ -54,7 +56,7 @@ const BookingForm = () => {
 
   const fetchBooking = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch(`${server_url}/api/bookings`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -143,7 +145,7 @@ const BookingForm = () => {
 
     try {
       if (isEdit) {
-        await fetch(`http://localhost:5000/api/bookings/${id}`, {
+        await fetch(`${server_url}/api/bookings/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -152,7 +154,7 @@ const BookingForm = () => {
           body: JSON.stringify(formData),
         });
       } else {
-        await fetch('http://localhost:5000/api/bookings', {
+        await fetch(`${server_url}/api/bookings`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

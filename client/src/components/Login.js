@@ -13,6 +13,8 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+   const server_url="https://cleaning-service-management-system-production.up.railway.app";
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,7 +29,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${server_url}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -28,10 +28,12 @@ const token = localStorage.getItem('token');
     fetchBookings();
   }, []);
 
+  const server_url="https://cleaning-service-management-system-production.up.railway.app";
+
   const fetchBookings = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch(`${server_url}/api/bookings`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -54,7 +56,7 @@ const token = localStorage.getItem('token');
     }
 
     try {
-      await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      await fetch(`${server_url}/api/bookings/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -75,7 +77,7 @@ const token = localStorage.getItem('token');
     }
 
     try {
-      await fetch(`http://localhost:5000/api/bookings/permanently/${id}`, {
+      await fetch(`${server_url}/api/bookings/permanently/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

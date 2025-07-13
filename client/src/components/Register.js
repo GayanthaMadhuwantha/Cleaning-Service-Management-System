@@ -14,6 +14,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+   const server_url="https://cleaning-service-management-system-production.up.railway.app";
 
   const handleChange = (e) => {
     setFormData({
@@ -44,7 +45,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch(`${server_url}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
