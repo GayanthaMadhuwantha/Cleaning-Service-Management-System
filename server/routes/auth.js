@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
 
     // Validation
-    if (!username || !password) {
+    if (!username || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -21,12 +21,12 @@ router.post('/register', async (req, res) => {
 
     // Check if user exists
     const [existingUsers] = await db.execute(
-      'SELECT id FROM users WHERE username = ?',
-      [username]
+      'SELECT id FROM users WHERE username = ? OR email = ?',
+      [username, email]
     );
 
     if (existingUsers.length > 0) {
-      return res.status(400).json({ message: 'Username already exists' });
+      return res.status(400).json({ message: 'Username or email already exists' });
     }
 
     // Hash password
@@ -35,8 +35,8 @@ router.post('/register', async (req, res) => {
 
     // Insert user
     const [result] = await db.execute(
-      'INSERT INTO users (username, password_hash, email, is_admin, created_at) VALUES (?, ?, ?, ?, ?)',
-      [username, passwordHash, email, false, new Date()]
+      'INSERT INTO users (username, email, password_hash,is_admin, created_at) VALUES (?, ?, ?, ?, ?)',
+      [username, email, passwordHash, 0, new Date()]
     );
 
     // Generate JWT
@@ -68,8 +68,8 @@ router.post('/login', async (req, res) => {
 
     // Find user
     const [users] = await db.execute(
-      'SELECT id, username, password_hash, email FROM users WHERE username = ? ',
-      [username]
+      'SELECT id, username, email, password_hash FROM users WHERE username = ? OR email = ?',
+      [username, username]
     );
 
     if (users.length === 0) {
