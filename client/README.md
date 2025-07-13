@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# CleanPro - Cleaning Service Booking Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application for booking and managing cleaning services, built with React, Express.js, and MySQL.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### User Authentication
+- User registration and login
+- JWT-based authentication
+- Secure password hashing with bcrypt
 
-### `npm start`
+### Booking Management
+- Create new cleaning service bookings
+- View all user bookings in a dashboard
+- Edit existing bookings
+- Cancel bookings
+- Form validation for all required fields
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Services
+- Multiple cleaning service types (Deep Cleaning, Carpet Cleaning, etc.)
+- Service pricing and duration information
+- Service descriptions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Database Schema
+- Users table with authentication
+- Services table with predefined cleaning services
+- Bookings table with foreign key relationships
+- Status tracking (pending, confirmed, completed, cancelled)
 
-### `npm test`
+## Technology Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- React 18 with JSX
+- React Router for navigation
+- Tailwind CSS for styling
+- Lucide React for icons
+- Axios for API calls
 
-### `npm run build`
+### Backend
+- Express.js server
+- MySQL database with mysql2
+- JWT for authentication
+- bcryptjs for password hashing
+- CORS enabled
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation & Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Node.js (v16 or higher)
+- MySQL database server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Database Setup
+1. Create a MySQL database named `cleaning_service`
+2. Update the `.env` file with your database credentials
+3. Run server/Cleaning Service Management System.sql` to create tables
 
-### `npm run eject`
+### Environment Variables
+Create a `.env` file in the root directory:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=cleaning_service
+JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+PORT=5000
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
+```bash
+npm install in both client and server folder
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Running the Application
+```bash
+# Start both frontend and backend using
+npm start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## API Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Authentication
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Bookings (Protected)
+- `GET /api/bookings` - Get all user bookings
+- `POST /api/bookings` - Create new booking
+- `PUT /api/bookings/:id` - Update booking
+- `DELETE /api/bookings/:id` - Cancel booking
+- `DELETE /api/bookings/permanently/:id` - permanently delete booking
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Services
+- `GET /api/services` - Get all available services
