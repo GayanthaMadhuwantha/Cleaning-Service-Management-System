@@ -4,14 +4,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'shoedbserver.mysql.database.azure.com',
-  user: process.env.DB_USER || 'root123',
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '1234',
   database: process.env.DB_NAME || 'cleaning_service',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
- 
+  ssl: {
+    rejectUnauthorized: true
+  }
 };
 
 const pool = mysql.createPool(dbConfig);
