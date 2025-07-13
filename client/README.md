@@ -43,6 +43,13 @@ A full-stack web application for booking and managing cleaning services, built w
 - bcryptjs for password hashing
 - CORS enabled
 
+
+
+
+
+
+
+
 ## Installation & Setup
 
 ### Prerequisites
@@ -75,6 +82,20 @@ npm install in both client and server folder
 ```bash
 # Start both frontend and backend using
 npm start
+```
+### Create New Account and Use the System using Sign up
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## API Endpoints
