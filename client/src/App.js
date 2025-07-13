@@ -39,7 +39,7 @@ function App() {
               }
             />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<div >404 Not Found</div>} />
           </Routes>
         </div>
       </Router>
