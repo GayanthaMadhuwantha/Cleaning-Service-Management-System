@@ -21,11 +21,17 @@ const Dashboard = () => {
   const [bookings, setBookings] = useState([]) ;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { user, logout } = useAuth();
+  const { user, logout,isAuthenticated } = useAuth();
   const navigate = useNavigate();
 const token = localStorage.getItem('token');
   useEffect(() => {
-    fetchBookings();
+    if (!isAuthenticated()) {
+      navigate("/login");
+    }
+    else{
+      fetchBookings();
+    }
+    
   }, []);
 
   const server_url="https://cleaning-service-management-system-production.up.railway.app";

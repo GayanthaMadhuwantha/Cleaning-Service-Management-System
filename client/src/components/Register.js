@@ -14,8 +14,9 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-   const server_url="https://cleaning-service-management-system-production.up.railway.app";
 
+  const server_url="https://cleaning-service-management-system-production.up.railway.app";
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,

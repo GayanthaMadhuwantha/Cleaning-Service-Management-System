@@ -18,7 +18,7 @@ const BookingForm = () => {
   const { id } = useParams();
   const isEdit = !!id;
   const navigate = useNavigate();
-  const { user, logout} = useAuth();
+  const { user, logout,Token,isAuthenticated} = useAuth();
   
   const [formData, setFormData] = useState({
     customer_name: '',
@@ -32,15 +32,22 @@ const BookingForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [validationErrors, setValidationErrors] = useState({});
-  const token = localStorage.getItem('token');
+  const token =Token();
 
   const server_url="https://cleaning-service-management-system-production.up.railway.app";
+  
+ 
 
   useEffect(() => {
-    fetchServices();
+    if(!isAuthenticated()){
+      navigate("/login");
+    }else{
+       fetchServices();
     if (isEdit) {
       fetchBooking();
     }
+    }
+   
   }, [id]);
 
   const fetchServices = async () => {

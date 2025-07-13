@@ -44,6 +44,10 @@ export const AuthProvider = ({ children }) => {
     return !!token && !!user;
   };
 
+  const Token=()=>{
+    return token;
+  } 
+
   const value = {
     user,
     token,
@@ -51,6 +55,7 @@ export const AuthProvider = ({ children }) => {
     logout,
     isAuthenticated,
     loading,
+    Token
   };
 
   return (

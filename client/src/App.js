@@ -12,34 +12,13 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
+            <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route
-              path="/dashboard"
-              element={
-
-                <Dashboard />
-
-              }
-            />
-            <Route
-              path="/book"
-              element={
-
-                <BookingForm />
-
-              }
-            />
-            <Route
-              path="/book/:id"
-              element={
-
-                <BookingForm />
-
-              }
-            />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="*" element={<div><h1>404 Not Found</h1></div>} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/book" element={<BookingForm />} />
+            <Route path="/book/:id" element={<BookingForm />} />
+            <Route path="*" element={<div className='flex items-center justify-center h-screen'><h1 className='text-4xl text-gray-900'>404 Not Found</h1></div>} />
           </Routes>
         </div>
       </Router>
