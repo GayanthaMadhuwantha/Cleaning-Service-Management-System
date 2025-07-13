@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const dbConfig = {
-  host: process.env.DB_HOST || 'shoedbserver.mysql.database.azure.com',
-  user: process.env.DB_USER || 'root123',
-  password: process.env.DB_PASSWORD || 'WEhfT7?dWs#y*RZ8',
-  database: process.env.DB_NAME || 'cleaning_service',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER ,
+  password: process.env.DB_PASSWORD ,
+  database: process.env.DB_NAME ,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
