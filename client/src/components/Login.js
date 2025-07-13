@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LogIn, User, Lock, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -10,11 +10,17 @@ const Login = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const server_url="https://cleaning-service-management-system-production.up.railway.app";
    
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate('/dashboard');
+    }
+  }, [isAuthenticated, navigate]);
+
 
   const handleChange = (e) => {
     setFormData({

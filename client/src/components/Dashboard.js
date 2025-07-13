@@ -28,9 +28,9 @@ const token = localStorage.getItem('token');
     if (!isAuthenticated()) {
       navigate("/login");
     }
-    else{
+ 
       fetchBookings();
-    }
+  
     
   }, []);
 
